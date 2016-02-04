@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+//function constructor
+function ArrayList(arr){
+	this.arr = arr;
+}
+
+/* uncomment this block it to do it in this way */
+/*
+ArrayList.prototype.addItem = function(itemName){
+	this.arr.push(itemName);
+	return this.arr;
+}
+
+ArrayList.prototype.deleteItem = function(itemName){
+	this.index = this.arr.indexOf(itemName);
+	this.arr.splice(this.index,1);
+	return this.arr;
+}
+
+ArrayList.prototype.getItem = function(itemName){
+	this.index = this.arr.indexOf(itemName);
+	return this.arr[this.index];
+}
+
+ArrayList.prototype.sortItems = function(){
+	this.arr.sort();
+	return this.arr;
+}
+
+ArrayList.prototype.updateItem = function(index, newItemName){
+	this.arr[index] = newItemName;
+	return this.arr;
+}
+*/
+
+
+//this is better way since you have to use prototype only once
+ArrayList.prototype = {
+	addItem : function(itemName){
+		this.arr.push(itemName); return this.arr;
+	},
+	deleteItem : function(itemName){
+		this.index = this.arr.indexOf(itemName);
+		this.arr.splice(this.index,1);
+		return this.arr;
+	},
+	getItem : function(itemName){
+		this.index = this.arr.indexOf(itemName);
+		return this.index === -1 ? "Value not found" : this.arr[this.index];
+	},
+	sortItems : function(){
+		this.arr.sort();
+		return this.arr;
+	},
+	updateItem : function(index, newItemName){
+		this.arr[index] = newItemName;
+		return this.arr;
+	},
+	reverseItems : function(){
+       this.arr.reverse();
+       return this.arr;
+	}
+}
+
+var listOfCars = ['toyota','honda','nissan','prius','mazda'];
+
+var carList = new ArrayList(listOfCars);
+
+console.log(carList.addItem('samsung'));
+console.log(carList.deleteItem('toyota'));
+console.log(carList.getItem('honda'));
+console.log(carList.sortItems());
+console.log(carList.updateItem(1,'mynewcar'));
+console.log(carList.reverseItems());
+
+</script>
+</body>
+</html>
